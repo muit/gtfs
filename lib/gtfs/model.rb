@@ -15,7 +15,8 @@ module GTFS
 
       def initialize(attrs)
         attrs.each do |key, val|
-          instance_variable_set("@#{key}", val)
+          realkey = key.gsub("\xEF\xBB\xBF".force_encoding("UTF-8"), "")
+          instance_variable_set("@#{realkey}", val)
         end
       end
     end
